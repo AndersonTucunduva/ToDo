@@ -28,27 +28,37 @@ const Summary: React.FC<TodoListProps> = ({ tasks }) => {
             </span>
           </h1>
         </div>
-        <div className="bg-preto400 text-preto100 mt-3 h-16 rounded-lg p-3 flex justify-between">
-          <div className="justify-start flex gap-3">
-            <Checkbox.Root
-              className="flex border-blue border-2 h-[25px] w-[25px] appearance-none rounded-full bg-preto400"
-              id="c1"
-            >
-              <Checkbox.Indicator className="text-preto100 m-auto text-base">
-                <CheckIcon />
-              </Checkbox.Indicator>
-            </Checkbox.Root>
-
-            {tasks.map((task) => (
-              <p key={task.id} className="text-sm">
-                {task.task}
-              </p>
-            ))}
-          </div>
-          <button>
-            <Trash2 className="text-preto300 h-[20px] w-[20px]" />
-          </button>
-        </div>
+        <table>
+          <tbody>
+            {tasks.map((task) => {
+              return (
+                <tr
+                  key={task.id}
+                  className="bg-preto400 text-preto100 mt-3 h-16 rounded-lg p-3 flex justify-between"
+                >
+                  <td>
+                    <Checkbox.Root
+                      className="flex border-blue border-2 h-[25px] w-[25px] appearance-none rounded-full bg-preto400"
+                      id="c1"
+                    >
+                      <Checkbox.Indicator className="text-preto100 m-auto text-base">
+                        <CheckIcon />
+                      </Checkbox.Indicator>
+                    </Checkbox.Root>
+                  </td>
+                  <td>
+                    <p className="text-sm">{task.task}</p>
+                  </td>
+                  <td>
+                    <button>
+                      <Trash2 className="text-preto300 h-[20px] w-[20px]" />
+                    </button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </main>
     </>
   )
