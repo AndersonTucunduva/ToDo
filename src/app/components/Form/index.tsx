@@ -2,6 +2,7 @@
 
 import { PlusCircle } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { api } from '@/app/api/axios'
 
 export function Form() {
   const {
@@ -10,8 +11,11 @@ export function Form() {
     formState: { isSubmitting },
   } = useForm()
 
-  function handleRegister() {
-    console.log('oi')
+  async function handleRegister(data: any) {
+    const { task } = data
+    await api.post('/api/task', {
+      task,
+    })
   }
   return (
     <form onSubmit={handleSubmit(handleRegister)}>

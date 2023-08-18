@@ -4,27 +4,36 @@ import { Trash2 } from 'lucide-react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
 import { ITask } from '../../../../types/tasks'
+import React, { useState } from 'react'
 
 interface TodoListProps {
   tasks: ITask[]
 }
 
-const Summary: React.FC<TodoListProps> = ({ tasks }) => {
+export function Summary({ tasks }: TodoListProps) {
+  const [checked, setChecked] = useState(false)
+
+  function handleCheck() {
+    setChecked(!checked)
+  }
+
+  const completeTask = tasks.filter((task) => task.completed === true).length
+
   return (
     <>
       <main className=" flex-col justify-center text-preto200 flex mt-20 w-full max-w-3xl m-auto">
         <div className="flex justify-between">
           <h1 className="flex text-blueDark">
             Tarefas Criadas
-            <span className="ml-2 text-preto100 bg-preto400 rounded-full p-1 items-center ">
-              6
+            <span className="ml-2 text-preto100 bg-preto400 rounded-full p-1 m-auto ">
+              {tasks.length}
             </span>
           </h1>
 
           <h1 className="flex text-purpleDark">
             Concluídas
             <span className="ml-2 text-preto100 bg-preto400 rounded-full p-1 items-center">
-              2 de 6
+              {completeTask} de {tasks.length}
             </span>
           </h1>
         </div>
@@ -38,6 +47,8 @@ const Summary: React.FC<TodoListProps> = ({ tasks }) => {
                 >
                   <td>
                     <Checkbox.Root
+                      checked={checked}
+                      onCheckedChange={handleCheck}
                       className="flex border-blue border-2 h-[25px] w-[25px] appearance-none rounded-full bg-preto400"
                       id="c1"
                     >
@@ -46,8 +57,8 @@ const Summary: React.FC<TodoListProps> = ({ tasks }) => {
                       </Checkbox.Indicator>
                     </Checkbox.Root>
                   </td>
-                  <td>
-                    <p className="text-sm">{task.task}</p>
+                  <td className="text-sm justify-start ml-2 items-start">
+                    {task.task}
                   </td>
                   <td>
                     <button>
@@ -63,4 +74,3 @@ const Summary: React.FC<TodoListProps> = ({ tasks }) => {
     </>
   )
 }
-export default Summary

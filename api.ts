@@ -6,3 +6,10 @@ export const getAllTodos = async (): Promise<ITask[]> => {
 
   return res
 }
+
+export const createTask = async (data: any): Promise<any> => {
+  const newTask = await prisma.users.create({
+    data,
+  })
+  return newTask
+}
