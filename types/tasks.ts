@@ -1,5 +1,5 @@
 export interface ITask {
   id: string
   task: string
-  completed: boolean | null
+  completed: boolean | undefined
 }

@@ -13,7 +13,7 @@ export function Form() {
 
   async function handleRegister(data: any) {
     const { task } = data
-    await api.post('/api/task', {
+    await api.post('/', {
       task,
     })
   }

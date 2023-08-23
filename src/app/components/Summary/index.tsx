@@ -3,14 +3,14 @@
 import { Trash2 } from 'lucide-react'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import { CheckIcon } from '@radix-ui/react-icons'
-import { ITask } from '../../../../types/tasks'
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { tasksProps } from '@/app/page'
 
-interface TodoListProps {
-  tasks: ITask[]
+interface TasksPropsSchema {
+  task: tasksProps
 }
 
-export function Summary({ tasks }: TodoListProps) {
+export function Summary(tasks: TasksPropsSchema) {
   const [checked, setChecked] = useState(false)
 
   function handleCheck() {
@@ -39,7 +39,7 @@ export function Summary({ tasks }: TodoListProps) {
         </div>
         <table>
           <tbody>
-            {tasks.map((task) => {
+            {tasks.map((task: any) => {
               return (
                 <tr
                   key={task.id}
@@ -47,7 +47,7 @@ export function Summary({ tasks }: TodoListProps) {
                 >
                   <td>
                     <Checkbox.Root
-                      checked={checked}
+                      checked={task.completed}
                       onCheckedChange={handleCheck}
                       className="flex border-blue border-2 h-[25px] w-[25px] appearance-none rounded-full bg-preto400"
                       id="c1"
