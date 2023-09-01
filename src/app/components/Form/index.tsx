@@ -4,18 +4,29 @@ import { PlusCircle } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { api } from '@/app/api/axios'
 
-export function Form() {
+interface PropsTask {
+  task: string
+}
+
+type handleProps = {
+  handleGet: () => void
+}
+
+export function Form({ handleGet }: handleProps) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
-  } = useForm()
+  } = useForm<PropsTask>()
 
-  async function handleRegister(data: any) {
+  async function handleRegister(data: PropsTask) {
     const { task } = data
-    await api.post('/', {
+    await api.post('/tasks', {
       task,
     })
+    handleGet()
+    reset()
   }
   return (
     <form onSubmit={handleSubmit(handleRegister)}>
