@@ -57,6 +57,7 @@ export default function Home() {
     <div className="flex flex-col bg-preto600 min-h-screen relative overflow-hidden">
       <Header />
       <Form handleGet={handleGetTasks} />
+
       <main className=" flex-col justify-center text-preto200 flex mt-20 w-full max-w-3xl m-auto">
         <div className="flex justify-between">
           <h1 className="flex text-blueDark">
@@ -81,7 +82,7 @@ export default function Home() {
                 return (
                   <tr
                     key={task.id}
-                    className="bg-preto400 text-preto100 mt-3 h-16 rounded-lg p-3 flex justify-between"
+                    className="bg-preto400 text-preto100 mt-3 h-16 rounded-lg p-3 flex"
                   >
                     <td>
                       <label>
@@ -95,7 +96,7 @@ export default function Home() {
                         />
                       </label>
                     </td>
-                    <td className="text-sm justify-start ml-2 items-start line-through">
+                    <td className="text-sm ml-2 line-through flex-1">
                       {task.task}
                     </td>
                     <td>
@@ -112,7 +113,7 @@ export default function Home() {
                 return (
                   <tr
                     key={task.id}
-                    className="bg-preto400 text-preto100 mt-3 h-16 rounded-lg p-3 flex justify-between"
+                    className="bg-preto400 text-preto100 mt-3 h-16 rounded-lg p-3 flex"
                   >
                     <td>
                       <label>
@@ -126,7 +127,7 @@ export default function Home() {
                         />
                       </label>
                     </td>
-                    <td className="text-sm justify-start ml-2 items-start">
+                    <td className="text-sm justify-start ml-2 items-start flex-1">
                       {task.task}
                     </td>
                     <td>
